@@ -1,0 +1,28 @@
+<Application x:Class="CargoManageSystem.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:CargoManageSystem" 
+             StartupUri="DoMain/Login/LoginWindow.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:CargoManageSystem.ViewModel">
+  <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <!-- Theme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Purple.xaml" />
+                <!--Custom Style-->
+                <ResourceDictionary Source="Resources/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/BorderDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/RadioButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/ToggleButtonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--Enable Global ViewModel-->
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

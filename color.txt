@@ -1,0 +1,308 @@
+You can never make the same mistake twice, because the second time you make it, it's not a mistake, it's a choice
+善战者，先为不可胜，以待敌之可胜
+<!--Background="#011163"-->
+
+{Binding ElementName=menuButton, Path=BtnContent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************create sql***************/
+CREATE TABLE [dbo].[DataDictionary] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [DataType] nvarchar NULL,
+  [ShortCode] nvarchar(5) NOT NULL,
+  [FullCode] nvarchar NULL,
+  [DataName] nvarchar NULL,
+  [CreateTime] datetime DEFAULT getdate() NULL,
+  CONSTRAINT [_copy_1] PRIMARY KEY CLUSTERED ([ShortCode])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'主键',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'Id'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'数据类型',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'DataType'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'类型缩写',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'ShortCode'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'类型全拼',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'FullCode'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'数据名称',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'DataName'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'插入时间',
+'SCHEMA', N'dbo',
+'TABLE', N'DataDictionary',
+'COLUMN', N'CreateTime'
+GO
+
+CREATE TABLE [dbo].[ExamPaper] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [QuestionId] int NOT NULL,
+  [CreateUserId] int NULL,
+  [Examinee] nvarchar NULL,
+  [Score] int NULL,
+  [WrongId] nvarchar NULL,
+  [WrongScore] int NULL,
+  [UsageCount] int NULL,
+  [CreateTime] datetime DEFAULT getdate() NULL,
+  CONSTRAINT [_copy_4] PRIMARY KEY CLUSTERED ([Id], [QuestionId])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'题目编号',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'QuestionId'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'试卷创建人',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'CreateUserId'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'考生',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'Examinee'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'最终得分',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'Score'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'错题编号',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'WrongId'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'错题分值',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'WrongScore'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'本套试卷考试次数',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'UsageCount'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'试卷创建时间',
+'SCHEMA', N'dbo',
+'TABLE', N'ExamPaper',
+'COLUMN', N'CreateTime'
+GO
+
+CREATE TABLE [dbo].[Questions] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [ExamPaperId] int NOT NULL,
+  [Content] nvarchar NULL,
+  [Score] int NULL,
+  [QuestionType] nvarchar(5) NULL,
+  [Subject] nvarchar NULL,
+  [Options] nvarchar NULL,
+  [Answer] nvarchar NULL,
+  [CreateTime] datetime NULL,
+  CONSTRAINT [_copy_3] PRIMARY KEY CLUSTERED ([Id], [ExamPaperId])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'主键',
+'SCHEMA', N'dbo',
+'TABLE', N'Questions',
+'COLUMN', N'Id'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'外键，关联试卷id',
+'SCHEMA', N'dbo',
+'TABLE', N'Questions',
+'COLUMN', N'ExamPaperId'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'数据字典',
+'SCHEMA', N'dbo',
+'TABLE', N'Questions',
+'COLUMN', N'QuestionType'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'may be not use',
+'SCHEMA', N'dbo',
+'TABLE', N'Questions',
+'COLUMN', N'CreateTime'
+GO
+
+CREATE TABLE [dbo].[RoleInfo] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [RoleInfo] varchar(200) NULL,
+  [Privilege] varchar(200) NULL,
+  PRIMARY KEY CLUSTERED ([Id])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'管理员，操作员',
+'SCHEMA', N'dbo',
+'TABLE', N'RoleInfo',
+'COLUMN', N'RoleInfo'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'操作权限，注册账号，删除试题等',
+'SCHEMA', N'dbo',
+'TABLE', N'RoleInfo',
+'COLUMN', N'Privilege'
+GO
+
+CREATE TABLE [dbo].[UserInfo] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [UserName] varchar(100) NULL,
+  [RoleId] int NULL,
+  [Password] varchar(50) DEFAULT getdate() NULL,
+  [CreateTime] datetime DEFAULT getdate() NULL,
+  CONSTRAINT [_copy_2] PRIMARY KEY CLUSTERED ([Id])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'md5+salt',
+'SCHEMA', N'dbo',
+'TABLE', N'UserInfo',
+'COLUMN', N'Password'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'getdate()',
+'SCHEMA', N'dbo',
+'TABLE', N'UserInfo',
+'COLUMN', N'CreateTime'
+GO
+
+CREATE TABLE [dbo].[WrongQuestions] (
+  [Id] int IDENTITY(1,1) NOT NULL,
+  [QuestionId] int NULL,
+  [QuestionType] nvarchar NULL,
+  [QuestionScore] int NULL,
+  [GenerateTime] datetime DEFAULT getdate() NULL,
+  CONSTRAINT [_copy_5] PRIMARY KEY CLUSTERED ([Id])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'主键',
+'SCHEMA', N'dbo',
+'TABLE', N'WrongQuestions',
+'COLUMN', N'Id'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'题目id',
+'SCHEMA', N'dbo',
+'TABLE', N'WrongQuestions',
+'COLUMN', N'QuestionId'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'题目类型',
+'SCHEMA', N'dbo',
+'TABLE', N'WrongQuestions',
+'COLUMN', N'QuestionType'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'题分值',
+'SCHEMA', N'dbo',
+'TABLE', N'WrongQuestions',
+'COLUMN', N'QuestionScore'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'错误时间',
+'SCHEMA', N'dbo',
+'TABLE', N'WrongQuestions',
+'COLUMN', N'GenerateTime'
+GO
+
+ALTER TABLE [dbo].[ExamPaper] ADD CONSTRAINT [fk_userid] FOREIGN KEY ([CreateUserId]) REFERENCES [dbo].[UserInfo] ([Id])
+GO
+
+ALTER TABLE [dbo].[Questions] ADD CONSTRAINT [fk_exampaperid] FOREIGN KEY ([ExamPaperId]) REFERENCES [dbo].[ExamPaper] ([Id])
+GO
+
+ALTER TABLE [dbo].[Questions] ADD CONSTRAINT [fk_datadic] FOREIGN KEY ([QuestionType]) REFERENCES [dbo].[DataDictionary] ([ShortCode])
+GO
+
+ALTER TABLE [dbo].[UserInfo] ADD CONSTRAINT [fk_roleid] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[RoleInfo] ([Id])
+GO
+
+ALTER TABLE [dbo].[WrongQuestions] ADD CONSTRAINT [fk_questionid] FOREIGN KEY ([QuestionId]) REFERENCES [dbo].[Questions] ([Id])
+GO
+
+DROP TABLE IF EXISTS [dbo].[CargoTypes]
+GO
+
+DROP TABLE IF EXISTS [dbo].[Cargoes]
+GO
+
+DROP TABLE IF EXISTS [dbo].[Members]
+GO
+
+DROP TABLE IF EXISTS [dbo].[Records]
