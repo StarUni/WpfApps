@@ -1,2 +1,3 @@
-# 1.系统说明
-目标是基于WPF开发一个考试管理系统。试卷录入，生成试卷，错题集，在线作答等。
+# 1.SystemInfo
+My goal is to develop an examination management system, This System include generate paper, paper history, wrong record, paper or user management.
+just study wpf from bilibili, just practice.
