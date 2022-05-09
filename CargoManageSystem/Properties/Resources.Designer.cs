@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CargoManageSystem.Properties
+namespace ExamManageSystem.Properties
 {
 
 

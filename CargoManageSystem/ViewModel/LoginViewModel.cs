@@ -1,5 +1,5 @@
-﻿using CargoManageSystem.DoMain.AppEngine;
-using CargoManageSystem.Models;
+﻿using ExamManageSystem.DoMain.AppEngine;
+using ExamManageSystem.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Models;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CargoManageSystem.ViewModel
+namespace ExamManageSystem.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {

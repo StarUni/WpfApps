@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CargoManageSystem.Models
+namespace ExamManageSystem.Models
 {
     using System;
     using System.Collections.Generic;

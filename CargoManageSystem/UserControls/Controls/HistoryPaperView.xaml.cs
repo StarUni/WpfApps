@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamManageSystem.DoMain.Login
+namespace ExamManageSystem.UserControls.Controls
 {
     /// <summary>
-    /// LoginWindow.xaml 的交互逻辑
+    /// HistoryPaperView.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginWindow : MetroWindow
+    public partial class HistoryPaperView : UserControl
     {
-        public LoginWindow()
+        public HistoryPaperView()
         {
             InitializeComponent();
         }

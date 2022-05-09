@@ -4,7 +4,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using MahApps.Metro.IconPacks;
 
-namespace CargoManageSystem.UserControls
+namespace ExamManageSystem.UserControls.Components
 {
     /// <summary>
     /// Menubutton.xaml 的交互逻辑

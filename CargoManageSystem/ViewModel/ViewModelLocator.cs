@@ -16,7 +16,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-namespace CargoManageSystem.ViewModel
+namespace ExamManageSystem.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -31,19 +31,14 @@ namespace CargoManageSystem.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+
+            SimpleIoc.Default.Register<HomeViewModel>();
+            SimpleIoc.Default.Register<NewPaperViewModel>();
+            SimpleIoc.Default.Register<HistoryViewModel>();
+            SimpleIoc.Default.Register<WrongRecordViewModel>();
+            SimpleIoc.Default.Register<ManagementViewModel>();
         }
 
         public LoginViewModel Login
@@ -59,6 +54,46 @@ namespace CargoManageSystem.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public HomeViewModel Home
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomeViewModel>();
+            }
+        }
+
+        public NewPaperViewModel NewPaper
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NewPaperViewModel>();
+            }
+        }
+
+        public HistoryViewModel History
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HistoryViewModel>();
+            }
+        }
+
+        public WrongRecordViewModel WrongRecord
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<WrongRecordViewModel>();
+            }
+        }
+
+        public ManagementViewModel Management
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ManagementViewModel>();
             }
         }
 
