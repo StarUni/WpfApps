@@ -25,8 +25,10 @@ namespace ExamManageSystem.Models
         public Nullable<int> RoleId { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
+        public string Salt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExamPaper> ExamPaper { get; set; }
+        public virtual RoleInfo RoleInfo { get; set; }
     }
 }

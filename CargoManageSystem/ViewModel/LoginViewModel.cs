@@ -1,4 +1,5 @@
 ﻿using ExamManageSystem.DoMain.AppEngine;
+using ExamManageSystem.DoMain.Helper;
 using ExamManageSystem.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -10,25 +11,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ExamManageSystem.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-        public Member Member { get; set; } = AppData.Instance.CurrentUser;
+        //public Member Member { get; set; } = AppData.Instance.CurrentUser;
+        public UserInfo UserInfo { get; set; } = AppData.Instance.UserInfo;
 
         public string SystemName { get; set; } = AppData.Instance.SystemName;
 
-        public MemberProvider _memberProvider
-        {
-            get; private set; 
-        }
+        public UserInfoProvider UserInfoProvider { get; set; }
+
+        //public MemberProvider _memberProvider
+        //{
+        //    get; private set; 
+        //}
 
         public LoginViewModel()
         {
-            Member.Name = "admin";
-            Member.Password = "123456";
+            UserInfo.UserName = "admin";
+            UserInfo.Password = "123456";
         }
+
 
         /// <summary>
         /// Login cmd without param
@@ -39,9 +45,9 @@ namespace ExamManageSystem.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    _memberProvider = new MemberProvider();
-                    var memlist = _memberProvider.GetList();
-                    var userinfo = _memberProvider.Select(x => x.Name.Equals(Member.Name) && x.Password.Equals(Member.Password));
+                    UserInfoProvider = new UserInfoProvider();
+                    var memlist = UserInfoProvider.GetList();
+                    var userinfo = UserInfoProvider.Select(x => x.UserName.Equals(UserInfo.UserName) && x.Password.Equals(UserInfo.Password));
                     if (userinfo is null)
                         MessageBox.Show("Current user not found!");
                     else
@@ -62,17 +68,57 @@ namespace ExamManageSystem.ViewModel
             {
                 return new RelayCommand<Window>((login) =>
                 {
-                    _memberProvider = new MemberProvider();
-                    var userinfo = _memberProvider.Select(x => x.Name.Equals(Member.Name) && x.Password.Equals(Member.Password));
+                    if(UserInfoProvider == null)
+                        UserInfoProvider = new UserInfoProvider();
+                    var passwordBox = login.FindName("inputpwd") as PasswordBox;
+                    var userinfo = UserInfoProvider.Select(x => x.UserName.Equals(UserInfo.UserName));
                     if (userinfo is null)
                     {
-                        MessageBox.Show("Current user not found!");
+                        if(MessageBox.Show("Current user not found! Register?", "Notice!", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                        {
+                            var salt = PasswordHelper.GenerateSalt(7);
+                            var pwd = PasswordHelper.MD5Encoding(passwordBox.Password, salt);
+                            var i = UserInfoProvider.Insert(new UserInfo() { UserName = UserInfo.UserName, Password = pwd, Salt = salt});
+                            if(i < 0)
+                            {
+                                MessageBox.Show($"insert failed.{i}");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Add Account succeed.please click login.");
+                            }
+                        }
                     }
                     else
                     {
-                        MainWindow mainWindow = new MainWindow();   
-                        mainWindow.Show();
-                        login.Close();
+                        var pwd = PasswordHelper.MD5Encoding(passwordBox.Password, userinfo.Salt);
+                        if (pwd is null)
+                        {
+                            userinfo.Salt = PasswordHelper.GenerateSalt(7);
+                            pwd = PasswordHelper.MD5Encoding(passwordBox.Password, userinfo.Salt);
+                        }
+                        if (userinfo.Password.Equals(pwd))
+                        {
+                            MainWindow mainWindow = new MainWindow();
+                            mainWindow.Show();
+                            login.Close();
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Password is incorrect! Reset Password?", "Error!", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
+                            {
+                                userinfo.Password = pwd;
+                                var i = UserInfoProvider.Update(userinfo);
+                                if (i < 0)
+                                {
+                                    MessageBox.Show($"reset password failed.{i}");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("update succeed.please click login.");
+                                }
+                            }
+                        }
                     }
                 });
             }

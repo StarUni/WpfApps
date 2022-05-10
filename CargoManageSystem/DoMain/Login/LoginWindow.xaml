@@ -44,12 +44,12 @@
                     <!--userinfo-->
                     <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
                         <TextBlock Text="Username:" FontSize="22" Height="20" Width="auto" Margin="50 0 10 0"/>
-                        <TextBox Text="{Binding Member.Name}" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
+                        <TextBox Text="{Binding UserInfo.UserName}" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
                     </StackPanel>
                     <!--password-->
                     <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal">
                         <TextBlock Text="Password:" FontSize="22" Height="20" Margin="50 0 10 0"/>
-                        <TextBox  Text="{Binding Member.Password}" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
+                        <PasswordBox x:Name="inputpwd"  PasswordChar="*" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
                     </StackPanel>
                     <!--loginbtn-->
                     <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
@@ -60,13 +60,13 @@
                         <Button Content="Cancel" Style="{StaticResource regularButton}" Margin="20 0 20 0"
                             Command="{Binding CancelCommand}"/>
                     </StackPanel>
-                    <!--registry account-->
+                    <!--registry account--><!--
                     <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal">
                         <Button Content="Register Account" Style="{StaticResource regularButton}" Width="220" Margin="20 0 10 0"
                             Command="{Binding RegisterCommand}"/>
                         <Button Content="Forget Password?" Style="{StaticResource regularButton}" Width="220" Margin="20 0 10 0"
                             Command="{Binding ResetCommand}"/>
-                    </StackPanel>
+                    </StackPanel>-->
                 </Grid>
             </Border>
         </Grid>

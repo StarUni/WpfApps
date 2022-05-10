@@ -16,25 +16,83 @@ namespace ExamManageSystem.DoMain.AppEngine
 
         public MainWindow MainWindow { get; set; }
 
-        public string SystemName 
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["SystemName"];
-            }
-        }
+        public string SystemName => ConfigurationManager.AppSettings["SystemName"];
 
-        public Member CurrentUser
+        public DataDictionary DataDictionary
         {
             get
             {
-                return new Member();
+                return new DataDictionary();
             }
             set
             {
-                CurrentUser = value;
-                RaisePropertyChanged("CurrentUser");
+                DataDictionary = value;
+                RaisePropertyChanged("DataDictionary");
             }
         }
+        public UserInfo UserInfo
+        {
+            get
+            {
+                return new UserInfo();
+            }
+            set
+            {
+                UserInfo = value;
+                RaisePropertyChanged("UserInfo");
+            }
+        }
+        public ExamPaper ExamPaper
+        {
+            get
+            {
+                return new ExamPaper();
+            }
+            set
+            {
+                ExamPaper = value;
+                RaisePropertyChanged("ExamPaper");
+            }
+        }
+
+        public RoleInfo RoleInfo
+        {
+            get
+            {
+                return new RoleInfo();
+            }
+            set
+            {
+                RoleInfo = value;
+                RaisePropertyChanged("RoleInfo");
+            }
+        }
+
+        public Questions Questions
+        {
+            get
+            {
+                return new Questions();
+            }
+            set
+            {
+                Questions = value;
+                RaisePropertyChanged("Questions");
+            }
+        }
+
+        public WrongQuestions WrongQuestions
+        {
+            get
+            {
+                return new WrongQuestions();
+            }
+            set
+            {
+                WrongQuestions = value;
+                RaisePropertyChanged("WrongQuestions");
+            }
+        }
+
     }
 }

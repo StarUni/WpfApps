@@ -13,10 +13,10 @@ namespace ExamManageSystem.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CargoEntities1 : DbContext
+    public partial class EMDBEntities : DbContext
     {
-        public CargoEntities1()
-            : base("name=CargoEntities1")
+        public EMDBEntities()
+            : base("name=EMDBEntities")
         {
         }
     
@@ -25,10 +25,6 @@ namespace ExamManageSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cargo> Cargo { get; set; }
-        public virtual DbSet<CargoType> CargoType { get; set; }
-        public virtual DbSet<Member> Member { get; set; }
-        public virtual DbSet<Record> Record { get; set; }
         public virtual DbSet<DataDictionary> DataDictionary { get; set; }
         public virtual DbSet<ExamPaper> ExamPaper { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }

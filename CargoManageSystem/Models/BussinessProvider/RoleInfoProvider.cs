@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.BussinessProvider
 {
-    public class CargoTypeProvider : Provider<CargoType>
+    public class RoleInfoProvider : Provider<RoleInfo>
     {
     }
 }

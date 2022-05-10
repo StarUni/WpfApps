@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.BussinessProvider
 {
-    public class RecordProvider : Provider<Record>
+    public class DataDictionaryProvider : Provider<DataDictionary>
     {
     }
 }
