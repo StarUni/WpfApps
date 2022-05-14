@@ -1,5 +1,6 @@
 ﻿using ExamManageSystem.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace Models
             return dbContext.Set<T>().ToList();
         }
 
+        public List<T> GetList(Expression<Func<T, bool>> expression)
+        {
+            return dbContext.Set<T>().Where(expression).ToList();
+        }
+
         public T Select(Expression<Func<T, bool>> expression)
         {
             return dbContext.Set<T>().Where(expression).SingleOrDefault();
@@ -34,6 +40,13 @@ namespace Models
         public int Insert(T item)
         {
             dbContext.Set<T>().Add(item);
+            var t = dbContext.SaveChanges();
+            return t;
+        }
+
+        public int InsertRange(IEnumerable<T> items)
+        {
+            dbContext.Set<T>().AddRange(items);
             var t = dbContext.SaveChanges();
             return t;
         }

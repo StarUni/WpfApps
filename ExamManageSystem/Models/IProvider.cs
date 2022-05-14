@@ -11,7 +11,9 @@ namespace Models
     {
         T Select(Expression<Func<T, bool>> expression);
         List<T> GetList();
+        List<T> GetList(Expression<Func<T, bool>> expression);
         int Insert(T item);
+        int InsertRange(IEnumerable<T> items);
         int Update(T item);
         int Delete(T item);
     }

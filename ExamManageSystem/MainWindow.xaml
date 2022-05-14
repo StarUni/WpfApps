@@ -131,7 +131,7 @@
 
             <!--Main Page-->
             <ToggleButton x:Name="toggleBtn" Style="{DynamicResource toggleButtonStyle}" Grid.Column="1"
-                              Content="&#xF104;" Foreground="Black" Margin="7 4 0 0"
+                              Content="&#xF104;" FontSize="20" Foreground="Black" Margin="5 0"
                               Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ContentControl x:Name="controlsContainer" Grid.Column="1"></ContentControl>
             <!--<StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Orientation="Vertical">

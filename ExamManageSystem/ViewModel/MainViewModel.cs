@@ -76,6 +76,7 @@ namespace ExamManageSystem.ViewModel
             {
                 case "HomePage": 
                     AppData.Instance.MainWindow.controlsContainer.Content = new HomeView(); 
+
                     break;
                 case "NewPaper":
                     AppData.Instance.MainWindow.controlsContainer.Content = new NewPaperView();

@@ -19,7 +19,7 @@ namespace ExamManageSystem.Models
         public Nullable<int> CreateUserId { get; set; }
         public string Examinee { get; set; }
         public Nullable<int> Score { get; set; }
-        public string WrongId { get; set; }
+        public Nullable<short> WrongId { get; set; }
         public Nullable<int> WrongScore { get; set; }
         public Nullable<int> UsageCount { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }

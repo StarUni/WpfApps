@@ -27,7 +27,7 @@
           <Property Name="CreateUserId" Type="int" />
           <Property Name="Examinee" Type="nvarchar" MaxLength="20" />
           <Property Name="Score" Type="int" />
-          <Property Name="WrongId" Type="nvarchar" MaxLength="20" />
+          <Property Name="WrongId" Type="int" />
           <Property Name="WrongScore" Type="int" />
           <Property Name="UsageCount" Type="int" />
           <Property Name="CreateTime" Type="datetime" />
@@ -44,7 +44,7 @@
           <Property Name="QuestionType" Type="nvarchar" MaxLength="5" />
           <Property Name="Subject" Type="nvarchar" MaxLength="20" />
           <Property Name="Options" Type="nvarchar" MaxLength="200" />
-          <Property Name="Answer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="255" />
           <Property Name="CreateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="RoleInfo">
@@ -146,7 +146,7 @@
           <Property Name="CreateUserId" Type="Int32" />
           <Property Name="Examinee" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Score" Type="Int32" />
-          <Property Name="WrongId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WrongId" Type="Int16" />
           <Property Name="WrongScore" Type="Int32" />
           <Property Name="UsageCount" Type="Int32" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
@@ -164,7 +164,7 @@
           <Property Name="QuestionType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="Subject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Options" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RoleInfo">

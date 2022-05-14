@@ -24,11 +24,6 @@ namespace ExamManageSystem.ViewModel
 
         public UserInfoProvider UserInfoProvider { get; set; }
 
-        //public MemberProvider _memberProvider
-        //{
-        //    get; private set; 
-        //}
-
         public LoginViewModel()
         {
             UserInfo.UserName = "admin";
@@ -137,34 +132,5 @@ namespace ExamManageSystem.ViewModel
                 });
             }
         }
-
-        /// <summary>
-        /// register cmd
-        /// </summary>
-        public RelayCommand RegisterCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    App.Current.Shutdown();
-                });
-            }
-        }
-
-        /// <summary>
-        /// resetpwd cmd
-        /// </summary>
-        public RelayCommand ResetCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    App.Current.Shutdown();
-                });
-            }
-        }
-
     }
 }
