@@ -260,6 +260,9 @@
     <Compile Include="UserControls\Components\Menuradiobutton.xaml.cs">
       <DependentUpon>Menuradiobutton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Components\QuestionPanel.xaml.cs">
+      <DependentUpon>QuestionPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Controls\HistoryPaperView.xaml.cs">
       <DependentUpon>HistoryPaperView.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\TextBlockDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Components\QuestionPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,11 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             DataContext="{Binding Source={StaticResource Locator}, Path=NewPaper}"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:uc="clr-namespace:ExamManageSystem.UserControls.Components" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" Name="newPaper" >
+    <!--change newpaper_loaded event to command-->
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding UcLoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
     <Grid>
-        <TextBlock Text="NewPaper" Style="{DynamicResource MahApps.Styles.TextBlock}" FontSize="20" HorizontalAlignment="Center"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="NewPaper" Style="{DynamicResource MahApps.Styles.TextBlock}" FontSize="20" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style x:Key="lblStyle" TargetType="Label">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontFamily" Value="../../DoMain/Fonts/#FontAwesome"/>
+                        <Setter Property="Margin" Value="2 3 0 3"/>
+                    </Style>
+                    <Style x:Key="tbxStyle" TargetType="TextBox">
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Width" Value="20"/>
+                        <Setter Property="Margin" Value="0 3 3 3"/>
+                    </Style>
+                    <Style x:Key="btnStyle" TargetType="Button">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="Margin" Value="15 3"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Label Style="{StaticResource lblStyle}" Content="填空题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=FBNum}"/>
+                <Label Style="{StaticResource lblStyle}"  Content="选择题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=MCNum}"/>
+                <Label Style="{StaticResource lblStyle}" Content="多选题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=MACNum}"/>
+                <Label Style="{StaticResource lblStyle}" Content="判断题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=TFNum}"/>
+                <Label Style="{StaticResource lblStyle}" Content="简答题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=SQNum}"/>
+                <Button Style="{StaticResource btnStyle}" Content="生成试卷"
+                        Command="{Binding generatePaperCommand, ElementName=newPaper}"/>
+            </StackPanel>
+            <ScrollViewer Grid.Row="1" >
+                <StackPanel Orientation="Vertical" x:Name="paperPnl">
+                    <!--<StackPanel.Resources>
+                        <Style TargetType="{x:Type uc:QuestionPanel}">
+                            <Setter Property="Margin" Value="6 7"/>
+                        </Style>
+                    </StackPanel.Resources>-->
+                    <!--<uc:QuestionPanel HorizontalAlignment="Stretch" TopicContent="Topic 1" TopicOptions="answer"/>
+                    <uc:QuestionPanel HorizontalAlignment="Stretch" TopicContent="Topic 2" TopicOptions="answer"/>
+                    <uc:QuestionPanel HorizontalAlignment="Stretch" TopicContent="Topic 3" TopicOptions="answer"/>
+                    <uc:QuestionPanel HorizontalAlignment="Stretch" TopicContent="Topic 4" TopicOptions="answer"/>
+                    <uc:QuestionPanel HorizontalAlignment="Stretch" TopicContent="Topic 5" TopicOptions="answer"/>-->
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>
