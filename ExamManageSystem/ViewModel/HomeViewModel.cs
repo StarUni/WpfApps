@@ -18,10 +18,16 @@ namespace ExamManageSystem.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
-        public QuestionsProvider QuestionsProvider { get; set; }
-        public DataDictionaryProvider DataDictionaryProvider { get; set; }
+        private readonly QuestionsProvider _questionsProvider = null;
+        private readonly DataDictionaryProvider _dataDictionaryProvider = null;
 
-        public RelayCommand<UserControl> ChooseFileCmd => new RelayCommand<UserControl>((uc) => 
+        public HomeViewModel()
+        {
+            _questionsProvider = new QuestionsProvider();
+            _dataDictionaryProvider = new DataDictionaryProvider();
+        }
+
+        public RelayCommand<UserControl> ChooseFileCmd => new RelayCommand<UserControl>(async (uc) => 
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -35,12 +41,8 @@ namespace ExamManageSystem.ViewModel
             }
             var fn = openFileDialog.FileName;
             ((TextBox)uc.FindName("filenameTB")).Text = fn;
-
-            if (DataDictionaryProvider is null)
-            {
-                DataDictionaryProvider = new DataDictionaryProvider();
-            }
-            var questionType = DataDictionaryProvider.GetList(x => x.DataType.Equals("Question"));
+            
+            var questionType = _dataDictionaryProvider.GetList(x => x.DataType.Equals("Question"));
             //加载Word文档
             Document document = new Document(fn);
             //document.LoadFromFile(fn);
@@ -97,10 +99,13 @@ namespace ExamManageSystem.ViewModel
                     };
                 }
             }
-            if(QuestionsProvider is null)
-                QuestionsProvider = new QuestionsProvider();
-            var num = QuestionsProvider.InsertRange(qs);
-            MessageBox.Show($"已成功导入{num}道试题");
+            
+            await Task.Run(() => 
+            {
+                qs.ForEach(x => x.CreateTime = DateTime.Now);
+                var num = _questionsProvider.InsertRange(qs);
+                MessageBox.Show($"已成功导入{num}道试题");
+            });
         });
     }
 }

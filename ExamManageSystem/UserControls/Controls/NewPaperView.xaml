@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:uc="clr-namespace:ExamManageSystem.UserControls.Components" 
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             DataContext="{Binding Source={StaticResource Locator}, Path=NewPaper}"
              mc:Ignorable="d" Name="newPaper" >
     <!--change newpaper_loaded event to command-->
     <!--<i:Interaction.Triggers>
@@ -17,41 +16,76 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="NewPaper" Style="{DynamicResource MahApps.Styles.TextBlock}" FontSize="20" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Text="NewPaper" Style="{DynamicResource MahApps.Styles.TextBlock}" 
+                   FontSize="20" HorizontalAlignment="Center"/>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Background="AliceBlue" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <StackPanel.Resources>
-                    <Style x:Key="lblStyle" TargetType="Label">
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="FontFamily" Value="../../DoMain/Fonts/#FontAwesome"/>
-                        <Setter Property="Margin" Value="2 3 0 3"/>
+                    <Style x:Key="tbcStyle" TargetType="TextBlock">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontFamily" Value="微软雅黑"/>
+                        <Setter Property="Margin" Value="2 5"/>
                     </Style>
                     <Style x:Key="tbxStyle" TargetType="TextBox">
-                        <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="Width" Value="20"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="Width" Value="30"/>
+                        <Setter Property="Height" Value="20"/>
                         <Setter Property="Margin" Value="0 3 3 3"/>
+                        <Setter Property="Tag" Value="Visible"/>
                     </Style>
                     <Style x:Key="btnStyle" TargetType="Button">
-                        <Setter Property="FontSize" Value="13"/>
-                        <Setter Property="Margin" Value="15 3"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="Height" Value="auto"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="Margin" Value="5 5"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderThickness="1 0" BorderBrush="DarkGreen" CornerRadius="5" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </StackPanel.Resources>
-                <Label Style="{StaticResource lblStyle}" Content="填空题:"/>
-                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=FBNum}"/>
-                <Label Style="{StaticResource lblStyle}"  Content="选择题:"/>
-                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=MCNum}"/>
-                <Label Style="{StaticResource lblStyle}" Content="多选题:"/>
-                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=MACNum}"/>
-                <Label Style="{StaticResource lblStyle}" Content="判断题:"/>
-                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=TFNum}"/>
-                <Label Style="{StaticResource lblStyle}" Content="简答题:"/>
-                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding ElementName=newPaper, Path=SQNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}" Text="填空题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding FBNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}"  Text="选择题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding MCNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}" Text="多选题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding MACNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}" Text="判断题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding TFNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}" Text="简答题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding SQNum}"/>
+                <TextBlock Style="{StaticResource tbcStyle}" Text="计算题:"/>
+                <TextBox Style="{StaticResource tbxStyle}" Text="{Binding CCNum}"/>
+                <Grid Width="200"/>
                 <Button Style="{StaticResource btnStyle}" Content="生成试卷"
-                        Command="{Binding generatePaperCommand, ElementName=newPaper}"/>
+                        Command="{Binding GeneratePaperCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+                <Button Style="{StaticResource btnStyle}" Content="显示答案"
+                        Command="{Binding DisplayAnswerCommand}"/>
+                <!--CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>-->
+
             </StackPanel>
             <ScrollViewer Grid.Row="1" >
                 <StackPanel Orientation="Vertical" x:Name="paperPnl">

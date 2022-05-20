@@ -7,68 +7,91 @@
                   xmlns:viewmodel="clr-namespace:ExamManageSystem.ViewModel" 
                   d:DataContext="{d:DesignInstance Type=viewmodel:LoginViewModel}"
                   mc:Ignorable="d" FontFamily="Consolas" ResizeMode="NoResize"
-                  Foreground="#011159" 
+                  Foreground="DarkViolet" 
                   DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
                   WindowStartupLocation="CenterScreen"
-                  WindowStyle="None"
-                  Title="Login" Height="500" Width="1100">
+                  WindowStyle="None" Background="Transparent"
+                  Title="登录" Height="450" Width="900">
+    <mah:MetroWindow.Resources>
+        <Storyboard  x:Key="sd1">
+            <DoubleAnimation Duration="0:0:2" From="100" To="120" RepeatBehavior="0:0:2" AutoReverse="True"
+                             Storyboard.TargetName="loginBtn" Storyboard.TargetProperty="Width"/>
+        </Storyboard>
+        <!--<Storyboard  x:Key="sd2">
+            <DoubleAnimation Duration="0:0:2" From="100" To="80" RepeatBehavior="1" AutoReverse="True"
+                             Storyboard.TargetName="logoutBtn" Storyboard.TargetProperty="Width"/>
+        </Storyboard>-->
+    </mah:MetroWindow.Resources>
+
+    <mah:MetroWindow.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="loginBtn">
+            <BeginStoryboard Storyboard="{StaticResource sd1}"/>
+        </EventTrigger>
+        <!--<EventTrigger RoutedEvent="Button.Click" SourceName="logoutBtn">
+            <BeginStoryboard Storyboard="{StaticResource sd2}"/>
+        </EventTrigger>-->
+    </mah:MetroWindow.Triggers>
+
     <Border Style="{StaticResource border}">
         <Grid>
-            <Grid.Background>
-                <!--<ImageBrush ImageSource="../../Images/dam.jpg" Stretch="UniformToFill"/>-->
-                <SolidColorBrush Color="WhiteSmoke"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5 10 0 40">
-                <Ellipse Width="8" Height="8" Fill="#eb1700"/>
-                <Ellipse Width="8" Height="8" Fill="#ffaf01" Margin="7 0"/>
-                <Ellipse Width="8" Height="8" Fill="#009d00"/>
-            </StackPanel>
-            <Border Style="{StaticResource border}" Grid.Column="1" Background="WhiteSmoke">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#111111"/>
-                </Border.Effect>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <!--system title-->
-                    <TextBlock Grid.Row="0" Text="{Binding SystemName}" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <!--userinfo-->
-                    <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock Text="Username:" FontSize="22" Height="20" Width="auto" Margin="50 0 10 0"/>
-                        <TextBox Text="{Binding UserInfo.UserName}" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
-                    </StackPanel>
-                    <!--password-->
-                    <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock Text="Password:" FontSize="22" Height="20" Margin="50 0 10 0"/>
-                        <PasswordBox x:Name="inputpwd"  PasswordChar="*" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
-                    </StackPanel>
-                    <!--loginbtn-->
-                    <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button Content="Login" Style="{StaticResource regularButton}"  Margin="120 0 10 0"
-                                Command="{Binding LoginCommandT}" 
+            <!--<Grid.Background>-->
+            <Image Source="../../Images/dam.jpg" Stretch="UniformToFill">
+                <Image.Effect>
+                    <BlurEffect Radius="20" KernelType="Gaussian"/>
+                </Image.Effect>
+            </Image>
+            <Grid>
+
+                <!--</Grid.Background>-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="450"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5 10 0 40">
+                    <Ellipse Width="8" Height="8" Fill="#eb1700"/>
+                    <Ellipse Width="8" Height="8" Fill="#ffaf01" Margin="7 0"/>
+                    <Ellipse Width="8" Height="8" Fill="#009d00"/>
+                </StackPanel>
+                <Border Style="{StaticResource border}" Grid.Column="1" Background="{x:Null}">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#111111"/>
+                    </Border.Effect>
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <!--system title-->
+                        <TextBlock Grid.Row="0" Text="{Binding SystemName}" FontSize="32"
+                               Foreground="GhostWhite"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <!--userinfo-->
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock Text="用户名:" Background="#87cefa" FontSize="22" Height="auto" Width="auto" VerticalAlignment="Center" Margin="20 0 10 0"/>
+                            <TextBox Text="{Binding _userInfo.UserName}" FontSize="22" Height="40" Width="280" Margin="20 0 20 0"/>
+                        </StackPanel>
+                        <!--password-->
+                        <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock Text="密码:" Background="#87cefa" FontSize="22" Height="auto" Width="auto" VerticalAlignment="Center" Margin="20 0 10 0"/>
+                            <PasswordBox x:Name="inputpwd"  PasswordChar="*" FontSize="22" Height="40" Width="280" Margin="42 0 20 0"/>
+                        </StackPanel>
+                        <!--loginbtn-->
+                        <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
+                            <Button Content="登录" Style="{StaticResource regularButton}"  Margin="120 0 10 0"
+                                Command="{Binding LoginCommandT}" x:Name="loginBtn"
                                 CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 IsDefault="True"/>
-                        <Button Content="Cancel" Style="{StaticResource regularButton}" Margin="20 0 20 0"
+                            <Button Content="取消" Style="{StaticResource regularButton}" 
+                                Margin="20 0" x:Name="logoutBtn"
                             Command="{Binding CancelCommand}"/>
-                    </StackPanel>
-                    <!--registry account--><!--
-                    <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button Content="Register Account" Style="{StaticResource regularButton}" Width="220" Margin="20 0 10 0"
-                            Command="{Binding RegisterCommand}"/>
-                        <Button Content="Forget Password?" Style="{StaticResource regularButton}" Width="220" Margin="20 0 10 0"
-                            Command="{Binding ResetCommand}"/>
-                    </StackPanel>-->
-                </Grid>
-            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
     </Border>
 </mah:MetroWindow>

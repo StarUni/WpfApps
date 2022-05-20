@@ -50,24 +50,24 @@ namespace ExamManageSystem.ViewModel
             mainWindow.Close();
         });
 
-        public RelayCommand<RadioButton> RadioBtnCommand => new RelayCommand<RadioButton>((rbtn) =>
-        {
-            if (string.IsNullOrEmpty(rbtn.Content.ToString())) return;
-            switch (rbtn.Content.ToString())
-            {
-                case "Home":
-                    AppData.Instance.MainWindow.controlsContainer.Content = new HomeView();
-                    break;
-                case "History":
-                    AppData.Instance.MainWindow.controlsContainer.Content = new HistoryPaperView();
-                    break;
-                case "Manage":
-                    AppData.Instance.MainWindow.controlsContainer.Content = new ManagementView();
-                    break;
-                default:
-                    break;
-            }
-        });
+        //public RelayCommand<RadioButton> RadioBtnCommand => new RelayCommand<RadioButton>((rbtn) =>
+        //{
+        //    if (string.IsNullOrEmpty(rbtn.Content.ToString())) return;
+        //    switch (rbtn.Content.ToString())
+        //    {
+        //        case "Home":
+        //            AppData.Instance.MainWindow.controlsContainer.Content = new HomeView();
+        //            break;
+        //        case "History":
+        //            AppData.Instance.MainWindow.controlsContainer.Content = new HistoryPaperView();
+        //            break;
+        //        case "Manage":
+        //            AppData.Instance.MainWindow.controlsContainer.Content = new ManagementView();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //});
 
         public RelayCommand<Menubutton> MenuBtnCommand => new RelayCommand<Menubutton>((mbtn) =>
         {

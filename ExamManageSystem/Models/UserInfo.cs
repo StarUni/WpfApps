@@ -14,12 +14,6 @@ namespace ExamManageSystem.Models
     
     public partial class UserInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserInfo()
-        {
-            this.ExamPaper = new HashSet<ExamPaper>();
-        }
-    
         public int Id { get; set; }
         public string UserName { get; set; }
         public Nullable<int> RoleId { get; set; }
@@ -27,8 +21,6 @@ namespace ExamManageSystem.Models
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string Salt { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExamPaper> ExamPaper { get; set; }
         public virtual RoleInfo RoleInfo { get; set; }
     }
 }

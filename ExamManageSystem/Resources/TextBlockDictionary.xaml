@@ -4,7 +4,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontFamily" Value="../DoMain/Fonts/#FontAwesome"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
 </ResourceDictionary>

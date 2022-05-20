@@ -13,6 +13,7 @@
                  Title="{Binding Title}"
                  Width="1360"
                  Height="760"
+                 Background="#008b8b"
                  GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
                  ResizeMode="CanResizeWithGrip"
                  WindowStartupLocation="CenterScreen"
@@ -29,30 +30,26 @@
     <mah:MetroWindow.Resources>
         <Storyboard x:Key="OnChecked">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="leftMenu">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="33"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="36"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="OnUnChecked">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="leftMenu">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="177"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </mah:MetroWindow.Resources>
 
     <mah:MetroWindow.Triggers>
         <EventTrigger RoutedEvent="ToggleButton.Checked" SourceName="toggleBtn">
-            <BeginStoryboard Storyboard="{StaticResource OnChecked}" >
-                
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnChecked}" />
         </EventTrigger>
         <EventTrigger RoutedEvent="ToggleButton.Unchecked" SourceName="toggleBtn">
-            <BeginStoryboard Storyboard="{StaticResource OnUnChecked}">
-                
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnUnChecked}"/>
         </EventTrigger>
     </mah:MetroWindow.Triggers>
 
-    <Border Style="{Binding Source={StaticResource border}}">
+    <Border Style="{Binding Source={StaticResource border}}"  Background="Transparent">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -60,19 +57,19 @@
             </Grid.ColumnDefinitions>
 
             <!--Left Menu-->
-            <Border  x:Name="leftMenu" HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource border}" BorderThickness="1 1 1 1" Background="White">
+            <Border  x:Name="leftMenu" HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource border}" BorderThickness="1" Background="Transparent">
                 <Border.Effect>
-                    <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="#777777" Opacity="0.7"/>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="OldLace" Opacity="0.7"/>
                 </Border.Effect>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Height="auto" Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5 10 0 40">
+                <Grid>
+                    <StackPanel Height="auto" Grid.Column="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5 10">
                         <StackPanel.Effect>
                             <DropShadowEffect ShadowDepth="1" BlurRadius="20" Color="#777777"/>
                         </StackPanel.Effect>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Row="0">
                                 <Ellipse Width="8" Height="8" Fill="#eb1700"/>
@@ -80,21 +77,43 @@
                                 <Ellipse Width="8" Height="8" Fill="#009d00"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                <TextBlock FontSize="20" Margin="0 20 0 0" FontFamily="DoMain/Fonts/#FontAwesome" Text="&#xF1B3;"/>
-                                <TextBlock VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="10 20 0 0" FontFamily="DoMain/Fonts/#FontAwesome" Text="{Binding Title}"/>
+                                <TextBlock FontSize="20" Margin="0 5" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                           FontFamily="DoMain/Fonts/#FontAwesome" Text="&#xF179;"/>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontSize="20" Margin="10 5" 
+                                           FontFamily="DoMain/Fonts/#FontAwesome" Text="{Binding Title}"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
-                    <uc:Menubutton Icon="HomeOutline" BtnContent="HomePage" MenuButtonCommand="{Binding MenuBtnCommand}" MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
-                    <uc:Menubutton Icon="MoonNew" BtnContent="NewPaper" MenuButtonCommand="{Binding MenuBtnCommand}" MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
-                    <uc:Menubutton Icon="History" BtnContent="HistoryPaper" MenuButtonCommand="{Binding MenuBtnCommand}" MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
-                    <uc:Menubutton Icon="Record" BtnContent="WrongRecord" MenuButtonCommand="{Binding MenuBtnCommand}" MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
-                    <uc:Menubutton Icon="SetCenter" BtnContent="Management" MenuButtonCommand="{Binding MenuBtnCommand}" MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    
+                    <uc:Menubutton Icon="HomeOutline" BtnContent="HomePage" 
+                                   Margin="0 66" VerticalAlignment="Top"
+                                   MenuButtonCommand="{Binding MenuBtnCommand}" 
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    <uc:Menubutton Icon="MoonNew" BtnContent="NewPaper" 
+                                   Margin="0 132" VerticalAlignment="Top"
+                                   MenuButtonCommand="{Binding MenuBtnCommand}" 
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    <uc:Menubutton Icon="History" BtnContent="HistoryPaper" 
+                                   Margin="0 198" VerticalAlignment="Top"
+                                   MenuButtonCommand="{Binding MenuBtnCommand}" 
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    <uc:Menubutton Icon="Record" BtnContent="WrongRecord" 
+                                   Margin="0 264" VerticalAlignment="Top"
+                                   MenuButtonCommand="{Binding MenuBtnCommand}" 
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    <uc:Menubutton Icon="SetCenter" BtnContent="Management" 
+                                   Margin="0 330" VerticalAlignment="Top"
+                                   MenuButtonCommand="{Binding MenuBtnCommand}" 
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                    <uc:Menubutton Icon="Power" VerticalAlignment="Bottom" BtnContent="PowerOff"
+                                   MenuButtonCommand="{Binding PowerOffCommand}"
+                                   MenuButtonCommandParam="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
+                           
                     <!--<RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="Home" Tag="&#xf109;" Checked="RadioButton_Checked"/>
                     <RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="History" Tag="&#xf03a;" Checked="RadioButton_Checked"/>
                     <RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="Manage" Tag="&#xf20c;" Checked="RadioButton_Checked"/>-->
-                    <RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="Home" Tag="&#xf109;">
-                        <!--use beheiver-->
+                    <!--<RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="Home" Tag="&#xf109;">
+                        --><!--use beheiver--><!--
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Checked">
                                 <i:InvokeCommandAction Command="{Binding RadioBtnCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton}}"/>
@@ -102,7 +121,7 @@
                         </i:Interaction.Triggers>
                     </RadioButton>
                     <RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="History" Tag="&#xf03a;" >
-                        <!--use beheiver-->
+                        --><!--use beheiver--><!--
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Checked">
                                 <i:InvokeCommandAction Command="{Binding RadioBtnCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton}}"/>
@@ -110,30 +129,28 @@
                         </i:Interaction.Triggers>
                     </RadioButton>
                     <RadioButton Style="{StaticResource MenuRadioButtonStyle}" FontSize="20" Content="Manage" Tag="&#xf20c;">
-                        <!--use beheiver-->
+                        --><!--use beheiver--><!--
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Checked">
                                 <i:InvokeCommandAction Command="{Binding RadioBtnCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton}}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </RadioButton>
+                    </RadioButton>-->
                     <!--<uc:Menuradiobutton FontFamily="DoMain/Fonts/#FontAwesome" Content="middle" Tag="&#xf20c;"/>-->
                     <!--<StackPanel>
                     <uc:Menuradiobutton Content="middle" Tag="&#xf11a;"/>
                     <uc:Menuradiobutton Content="big" Tag="&#xf11a;"/>
                     <uc:Menuradiobutton Content="small" Tag="&#xf11a;"/>
                 </StackPanel>-->
-                    <uc:Menubutton Grid.Column="0"  MenuButtonCommand="{Binding PowerOffCommand}"
-                           MenuButtonCommandParam="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                           Icon="Power" VerticalAlignment="Bottom" BtnContent="PowerOff"/>
-                </StackPanel>
+                    
+                </Grid>
             </Border>
 
             <!--Main Page-->
             <ToggleButton x:Name="toggleBtn" Style="{DynamicResource toggleButtonStyle}" Grid.Column="1"
                               Content="&#xF104;" FontSize="20" Foreground="Black" Margin="5 0"
                               Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ContentControl x:Name="controlsContainer" Grid.Column="1"></ContentControl>
+            <ContentControl x:Name="controlsContainer" Grid.Column="1"/>
             <!--<StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Orientation="Vertical">
                 <Grid>
                     <Grid.RowDefinitions>

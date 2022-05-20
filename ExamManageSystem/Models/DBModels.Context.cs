@@ -26,7 +26,6 @@ namespace ExamManageSystem.Models
         }
     
         public virtual DbSet<DataDictionary> DataDictionary { get; set; }
-        public virtual DbSet<ExamPaper> ExamPaper { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<RoleInfo> RoleInfo { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }

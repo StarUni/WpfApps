@@ -15,7 +15,6 @@ namespace ExamManageSystem.Models
     public partial class Questions
     {
         public int Id { get; set; }
-        public int ExamPaperId { get; set; }
         public string Content { get; set; }
         public Nullable<int> Score { get; set; }
         public string QuestionType { get; set; }
@@ -23,5 +22,6 @@ namespace ExamManageSystem.Models
         public string Options { get; set; }
         public string Answer { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
+        public string PaperName { get; set; }
     }
 }

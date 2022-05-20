@@ -13,8 +13,8 @@
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Text="导入试题：" Margin="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16"/>
-        <TextBox Grid.Column="1" x:Name="filenameTB" MinWidth="450" Margin="5 0 20 0" 
-                 VerticalAlignment="Center" HorizontalAlignment="Left"
+        <TextBox Grid.Column="1" x:Name="filenameTB" MinWidth="450" Margin="5 5" 
+                 VerticalAlignment="Center" HorizontalAlignment="Stretch"
                  FontSize="16" 
                  BorderThickness="0 0 0 1" BorderBrush="DarkGray"/>
         <Button Grid.Column="2" x:Name="chossebtn"
@@ -27,7 +27,7 @@
                     <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                 <i:InvokeCommandAction Command="{Binding ContentTextBlockCommand, ElementName=choosefile}"
-                                                       CommandParameter="{Binding ContentTextBlockCommandParam, ElementName=choosefile}"/>
+                                    CommandParameter="{Binding ContentTextBlockCommandParam, ElementName=choosefile}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
             </TextBlock>

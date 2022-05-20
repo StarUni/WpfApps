@@ -53,18 +53,10 @@ namespace Models
 
         public int Update(T item)
         {
-            if(item.Equals(null)) return -1;
-            try
-            {
-                dbContext.Entry(item).CurrentValues.SetValues(item);
-                var t = dbContext.SaveChanges();
-                return t;
-            }
-            catch (DbEntityValidationException dbException)
-            {
-                throw;
-            }
-            
+            if (item.Equals(null)) return -1;
+            dbContext.Entry(item).CurrentValues.SetValues(item);
+            var t = dbContext.SaveChanges();
+            return t;
         }
     }
 }

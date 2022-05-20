@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExamManageSystem.UserControls.Components"
-             mc:Ignorable="d"  Name="questionPanel">
+             mc:Ignorable="d" FontFamily="Consolas" FontSize="16"  Name="questionPanel">
     <Border Style="{StaticResource border}" Background="FloralWhite" Width="500" Height="300" Padding="10 20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{DynamicResource textBlock}" 
                        Margin="0 5"
@@ -17,7 +17,7 @@
                        Text="{Binding ElementName=questionPanel, Path=TopicContent}"
                        TextWrapping="Wrap"
                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <TextBox Grid.Row="1" Text="{Binding ElementName=questionPanel, Path=TopicOptions}"
+            <TextBox Grid.Row="1" Text="{Binding ElementName=questionPanel, Path=TopicAnswer}"
                        Margin="0 5"
                      VerticalScrollBarVisibility="Hidden"
                      HorizontalScrollBarVisibility="Hidden"

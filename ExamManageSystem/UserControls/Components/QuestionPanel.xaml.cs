@@ -34,12 +34,12 @@ namespace ExamManageSystem.UserControls.Components
         public static readonly DependencyProperty TopicContentProperty =
             DependencyProperty.Register("TopicContent", typeof(string), typeof(QuestionPanel));
 
-        public string TopicOptions
+        public string TopicAnswer
         {
-            get { return (string)GetValue(TopicOptionsProperty); }
-            set { SetValue(TopicOptionsProperty, value); }
+            get { return (string)GetValue(TopicAnswerProperty); }
+            set { SetValue(TopicAnswerProperty, value); }
         }
-        public static readonly DependencyProperty TopicOptionsProperty =
-            DependencyProperty.Register("TopicOptions", typeof(string), typeof(QuestionPanel));
+        public static readonly DependencyProperty TopicAnswerProperty =
+            DependencyProperty.Register("TopicAnswer", typeof(string), typeof(QuestionPanel));
     }
 }

@@ -3,14 +3,14 @@
     <!--Border-->
     <Style x:Key="border" TargetType="Border">
         <!--<Border BorderBrush="LightYellow" CornerRadius="25" BorderThickness="5"/>-->
-        <Setter Property="BorderBrush" Value="#20b2aa"/>
+        <Setter Property="BorderBrush" Value="ForestGreen"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="BorderThickness" Value="1"/>
         <!--<Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>-->
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="#777777" Opacity="0.7"/>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="OldLace" Opacity="0.7"/>
             </Setter.Value>
         </Setter>
     </Style>

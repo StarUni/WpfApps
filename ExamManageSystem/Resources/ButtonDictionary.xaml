@@ -6,16 +6,17 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                    <GradientStop Color="#FFC564B8" Offset="0"/>
-                    <GradientStop Color="#FFF57A7A" Offset="1"/>
+                    <!--<GradientStop Color="#FFC564B8" Offset="0"/>
+                    <GradientStop Color="#FFF57A7A" Offset="1"/>-->
+                    <GradientStop Color="#b0e0e6" Offset="0"/>
+                    <GradientStop Color="#87cefa" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="#123456"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="DarkViolet"/>
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="Width" Value="120"/>
-        <Setter Property="Height" Value="45"/>
+        <Setter Property="Height" Value="35"/>
         <Setter Property="Tag" Value="Hidden"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -29,7 +30,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="Beige"/>
-                <Setter Property="Tag" Value="Visiable"/>
+                <Setter Property="Tag" Value="Visible"/>
             </Trigger>
             <!--<DataTrigger Property="IsMouseOver" Value="True">
                         <Setter Property="Foreground" Value="{TemplateBinding Background}"/>
@@ -43,22 +44,22 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                    <GradientStop Color="#00bfff" Offset="0"/>
-                    <GradientStop Color="#00bfff" Offset="0.5"/>
-                    <GradientStop Color="#1e90ff" Offset="1"/>
+                    <GradientStop Color="#afeeee" Offset="0"/>
+                    <GradientStop Color="#48d1cc" Offset="1"/>
+                    <!--<GradientStop Color="#00bfff" Offset="0.5"/>-->
+                    <!--<GradientStop Color="#1e90ff" Offset="1"/>-->
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="#edeeee"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Margin" Value="0 12"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="6 7"/>
         <Setter Property="Tag" Value="Hidden"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -66,23 +67,23 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="#7368ff"/>
-                <Setter Property="Tag" Value="Visiable"/>
+                <Setter Property="Tag" Value="Visible"/>
             </Trigger>
             <DataTrigger Binding="{Binding ElementName=menuButton, Path=IsActive}" Value="True">
-                        <Setter Property="Foreground" Value="#7368ff"/>
-                        <Setter Property="Tag" Value="Visiable"/>
+                <Setter Property="Foreground" Value="#7368ff"/>
+                <Setter Property="Tag" Value="Visible"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Left-Menu-Button-Icon-->
     <Style x:Key="menuButtonIcon" TargetType="Icon:PackIconMaterial">
-        <Setter Property="Foreground" Value="{Binding Path=Foreground}"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Width" Value="18"/>
         <Setter Property="Height" Value="18"/>
         <Setter Property="Margin" Value="10 0 0 0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="FocusVisualStyle" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
-    
+
 </ResourceDictionary>

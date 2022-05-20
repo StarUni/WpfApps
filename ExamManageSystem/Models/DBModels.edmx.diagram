@@ -5,13 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="33a70307a4c645eb8fcf62bac63f054f" Name="Diagram1">
-        <EntityTypeShape EntityType="EMDBModel.DataDictionary" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMDBModel.ExamPaper" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMDBModel.Questions" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMDBModel.DataDictionary" Width="1.5" PointX="6.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMDBModel.Questions" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="EMDBModel.RoleInfo" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EMDBModel.UserInfo" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMDBModel.WrongQuestions" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="EMDBModel.fk_userid" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EMDBModel.WrongQuestions" Width="1.5" PointX="5" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="EMDBModel.fk_roleid" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

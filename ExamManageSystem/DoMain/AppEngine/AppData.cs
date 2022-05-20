@@ -18,6 +18,19 @@ namespace ExamManageSystem.DoMain.AppEngine
 
         public string SystemName => ConfigurationManager.AppSettings["SystemName"];
 
+        public UserInfo UserInfo { get; set; } = new UserInfo();
+        //{
+        //    get
+        //    {
+        //        return UserInfo;
+        //    }
+        //    set
+        //    {
+        //        UserInfo = value;
+        //        RaisePropertyChanged("UserInfo");
+        //    }
+        //}
+
         public DataDictionary DataDictionary
         {
             get
@@ -29,31 +42,7 @@ namespace ExamManageSystem.DoMain.AppEngine
                 DataDictionary = value;
                 RaisePropertyChanged("DataDictionary");
             }
-        }
-        public UserInfo UserInfo
-        {
-            get
-            {
-                return new UserInfo();
-            }
-            set
-            {
-                UserInfo = value;
-                RaisePropertyChanged("UserInfo");
-            }
-        }
-        public ExamPaper ExamPaper
-        {
-            get
-            {
-                return new ExamPaper();
-            }
-            set
-            {
-                ExamPaper = value;
-                RaisePropertyChanged("ExamPaper");
-            }
-        }
+        }        
 
         public RoleInfo RoleInfo
         {

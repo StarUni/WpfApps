@@ -17,17 +17,14 @@ namespace ExamManageSystem.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-        //public Member Member { get; set; } = AppData.Instance.CurrentUser;
-        public UserInfo UserInfo { get; set; } = AppData.Instance.UserInfo;
-
+        public UserInfo _userInfo { get; set; } = AppData.Instance.UserInfo;
         public string SystemName { get; set; } = AppData.Instance.SystemName;
-
-        public UserInfoProvider UserInfoProvider { get; set; }
+        private UserInfoProvider _userInfoProvider = null;
 
         public LoginViewModel()
         {
-            UserInfo.UserName = "admin";
-            UserInfo.Password = "123456";
+            _userInfoProvider = new UserInfoProvider();
+            _userInfo.UserName = "admin";
         }
 
 
@@ -40,9 +37,8 @@ namespace ExamManageSystem.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    UserInfoProvider = new UserInfoProvider();
-                    var memlist = UserInfoProvider.GetList();
-                    var userinfo = UserInfoProvider.Select(x => x.UserName.Equals(UserInfo.UserName) && x.Password.Equals(UserInfo.Password));
+                    var memlist = _userInfoProvider.GetList();
+                    var userinfo = _userInfoProvider.Select(x => x.UserName.Equals(_userInfo.UserName) && x.Password.Equals(_userInfo.Password));
                     if (userinfo is null)
                         MessageBox.Show("Current user not found!");
                     else
@@ -63,17 +59,15 @@ namespace ExamManageSystem.ViewModel
             {
                 return new RelayCommand<Window>((login) =>
                 {
-                    if(UserInfoProvider == null)
-                        UserInfoProvider = new UserInfoProvider();
                     var passwordBox = login.FindName("inputpwd") as PasswordBox;
-                    var userinfo = UserInfoProvider.Select(x => x.UserName.Equals(UserInfo.UserName));
+                    var userinfo = _userInfoProvider.Select(x => x.UserName.Equals(_userInfo.UserName));
                     if (userinfo is null)
                     {
                         if(MessageBox.Show("Current user not found! Register?", "Notice!", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                         {
                             var salt = PasswordHelper.GenerateSalt(7);
                             var pwd = PasswordHelper.MD5Encoding(passwordBox.Password, salt);
-                            var i = UserInfoProvider.Insert(new UserInfo() { UserName = UserInfo.UserName, Password = pwd, Salt = salt});
+                            var i = _userInfoProvider.Insert(new UserInfo() { UserName = _userInfo.UserName, Password = pwd, Salt = salt});
                             if(i < 0)
                             {
                                 MessageBox.Show($"insert failed.{i}");
@@ -94,6 +88,7 @@ namespace ExamManageSystem.ViewModel
                         }
                         if (userinfo.Password.Equals(pwd))
                         {
+                            AppData.Instance.UserInfo = userinfo;
                             MainWindow mainWindow = new MainWindow();
                             mainWindow.Show();
                             login.Close();
@@ -103,7 +98,7 @@ namespace ExamManageSystem.ViewModel
                             if (MessageBox.Show("Password is incorrect! Reset Password?", "Error!", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
                             {
                                 userinfo.Password = pwd;
-                                var i = UserInfoProvider.Update(userinfo);
+                                var i = _userInfoProvider.Update(userinfo);
                                 if (i < 0)
                                 {
                                     MessageBox.Show($"reset password failed.{i}");

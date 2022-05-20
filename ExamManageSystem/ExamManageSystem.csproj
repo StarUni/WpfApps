@@ -210,7 +210,6 @@
     <Compile Include="DoMain\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\BussinessProvider\ExamPaperProvider.cs" />
     <Compile Include="Models\BussinessProvider\RoleInfoProvider.cs" />
     <Compile Include="Models\BussinessProvider\QuestionsProvider.cs" />
     <Compile Include="Models\BussinessProvider\DataDictionaryProvider.cs" />
@@ -233,9 +232,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ExamPaper.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IProvider.cs" />
     <Compile Include="Models\Provider.cs" />
