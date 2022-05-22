@@ -1,6 +1,7 @@
 ﻿using ExamManageSystem.DoMain.AppEngine;
 using ExamManageSystem.DoMain.Helper;
 using ExamManageSystem.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Models;
@@ -16,11 +17,13 @@ namespace ExamManageSystem.ViewModel
         public UserInfo _userInfo { get; set; } = AppData.Instance.UserInfo;
         public string SystemName { get; set; } = AppData.Instance.SystemName;
         private UserInfoProvider _userInfoProvider = null;
+        private readonly ServiceProvider _serviceProvider;
 
         public LoginViewModel(EMSDBContext context)
         {
             _userInfoProvider = new UserInfoProvider(context);
             _userInfo.UserName = "admin";
+            _serviceProvider = new ViewModelLocator()._serviceProvider;
         }
 
 
@@ -91,7 +94,7 @@ namespace ExamManageSystem.ViewModel
                         if (userinfo.Password.Equals(pwd))
                         {
                             AppData.Instance.UserInfo = userinfo;
-                            MainWindow mainWindow = new MainWindow();
+                            var mainWindow = _serviceProvider.GetService<MainWindow>();
                             mainWindow.Show();
                             login.Close();
                         }

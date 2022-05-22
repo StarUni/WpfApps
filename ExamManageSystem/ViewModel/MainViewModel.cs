@@ -7,18 +7,6 @@ using System.Windows;
 
 namespace ExamManageSystem.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ObservableObject
     {
         /// <summary>
@@ -31,7 +19,7 @@ namespace ExamManageSystem.ViewModel
 
         public string Title { get; set; } = AppData.Instance.SystemName;
 
-        public RelayCommand LaunchGitHubSite => new RelayCommand(() =>
+        public static RelayCommand LaunchGitHubSite => new RelayCommand(() =>
         {
             System.Diagnostics.Process.Start("MsEdge.exe", "https://www.baidu.com");
         });
@@ -60,14 +48,13 @@ namespace ExamManageSystem.ViewModel
         //    }
         //});
 
-        public RelayCommand<Menubutton> MenuBtnCommand => new RelayCommand<Menubutton>((mbtn) =>
+        public static RelayCommand<Menubutton> MenuBtnCommand => new((mbtn) =>
         {
             if (string.IsNullOrEmpty(mbtn.BtnContent)) return;
             switch (mbtn.BtnContent)
             {
                 case "HomePage": 
                     AppData.Instance.MainWindow.controlsContainer.Content = new HomeView(); 
-
                     break;
                 case "NewPaper":
                     AppData.Instance.MainWindow.controlsContainer.Content = new NewPaperView();

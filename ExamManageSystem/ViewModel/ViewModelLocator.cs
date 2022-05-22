@@ -14,9 +14,7 @@
 
 using ExamManageSystem.DoMain.Login;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Models;
-using Models.BussinessProvider;
 
 namespace ExamManageSystem.ViewModel
 {
@@ -26,31 +24,25 @@ namespace ExamManageSystem.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        public readonly ServiceProvider _serviceProvider;
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
+        public ServiceProvider _serviceProvider;
+
         public ViewModelLocator()
         {
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
             _serviceProvider = serviceCollection.BuildServiceProvider();
-
-            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<MainViewModel>().BuildServiceProvider());
-            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<LoginViewModel>().BuildServiceProvider());
-            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<HomeViewModel>().BuildServiceProvider());
-            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<NewPaperViewModel>().BuildServiceProvider());
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ViewModelLocator>();
-            services.AddDbContext<EMSDBContext>();
-            services.AddSingleton<MainWindow>();
-            services.AddSingleton<LoginWindow>();
-            services.AddSingleton<LoginViewModel>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<NewPaperViewModel>();
+            services.AddSingleton<ViewModelLocator>()
+                .AddDbContext<EMSDBContext>()
+                .AddScoped<MainWindow>()
+                .AddScoped<LoginWindow>()
+                .AddScoped<MainViewModel>()
+                .AddScoped<LoginViewModel>()
+                .AddScoped<HomeViewModel>()
+                .AddScoped<NewPaperViewModel>();
         }
 
         public LoginViewModel Login
