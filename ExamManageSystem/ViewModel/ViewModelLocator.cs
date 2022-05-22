@@ -12,9 +12,11 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using CommonServiceLocator;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
+using ExamManageSystem.DoMain.Login;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Models;
+using Models.BussinessProvider;
 
 namespace ExamManageSystem.ViewModel
 {
@@ -24,28 +26,38 @@ namespace ExamManageSystem.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+        public readonly ServiceProvider _serviceProvider;
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+            _serviceProvider = serviceCollection.BuildServiceProvider();
 
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<LoginViewModel>();
+            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<MainViewModel>().BuildServiceProvider());
+            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<LoginViewModel>().BuildServiceProvider());
+            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<HomeViewModel>().BuildServiceProvider());
+            //Ioc.Default.ConfigureServices(serviceCollection.AddSingleton<NewPaperViewModel>().BuildServiceProvider());
+        }
 
-            SimpleIoc.Default.Register<HomeViewModel>();
-            SimpleIoc.Default.Register<NewPaperViewModel>();
-            SimpleIoc.Default.Register<HistoryViewModel>();
-            SimpleIoc.Default.Register<WrongRecordViewModel>();
-            SimpleIoc.Default.Register<ManagementViewModel>();
+        private void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<ViewModelLocator>();
+            services.AddDbContext<EMSDBContext>();
+            services.AddSingleton<MainWindow>();
+            services.AddSingleton<LoginWindow>();
+            services.AddSingleton<LoginViewModel>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<NewPaperViewModel>();
         }
 
         public LoginViewModel Login
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<LoginViewModel>();
+                return _serviceProvider.GetService<LoginViewModel>();
             }
         }
 
@@ -53,7 +65,7 @@ namespace ExamManageSystem.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return _serviceProvider.GetService<MainViewModel>();
             }
         }
 
@@ -61,7 +73,7 @@ namespace ExamManageSystem.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<HomeViewModel>();
+                return _serviceProvider.GetService<HomeViewModel>();
             }
         }
 
@@ -69,31 +81,7 @@ namespace ExamManageSystem.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NewPaperViewModel>();
-            }
-        }
-
-        public HistoryViewModel History
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<HistoryViewModel>();
-            }
-        }
-
-        public WrongRecordViewModel WrongRecord
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<WrongRecordViewModel>();
-            }
-        }
-
-        public ManagementViewModel Management
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ManagementViewModel>();
+                return _serviceProvider.GetService<NewPaperViewModel>();
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using ExamManageSystem.DoMain.AppEngine;
 using ExamManageSystem.UserControls.Controls;
+using ExamManageSystem.ViewModel;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace ExamManageSystem
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
             AppData.Instance.MainWindow = this;
         }
 

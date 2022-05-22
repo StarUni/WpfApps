@@ -9,5 +9,8 @@ namespace Models.BussinessProvider
 {
     public class UserInfoProvider : Provider<UserInfo>
     {
+        public UserInfoProvider(EMSDBContext dbContext) : base(dbContext)
+        {
+        }
     }
 }

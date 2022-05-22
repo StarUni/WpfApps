@@ -1,11 +1,9 @@
 using ExamManageSystem.DoMain.AppEngine;
 using ExamManageSystem.UserControls.Components;
 using ExamManageSystem.UserControls.Controls;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using MahApps.Metro.Controls;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ExamManageSystem.ViewModel
 {
@@ -21,21 +19,14 @@ namespace ExamManageSystem.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ObservableObject
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            
         }
 
         public string Title { get; set; } = AppData.Instance.SystemName;

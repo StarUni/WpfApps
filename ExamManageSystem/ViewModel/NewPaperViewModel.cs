@@ -1,8 +1,9 @@
 ﻿using ExamManageSystem.DoMain.AppEngine;
 using ExamManageSystem.Models;
 using ExamManageSystem.UserControls.Components;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using Models;
 using Models.BussinessProvider;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Controls;
 
 namespace ExamManageSystem.ViewModel
 {
-    public class NewPaperViewModel : ViewModelBase
+    public class NewPaperViewModel : ObservableObject
     {
         private readonly QuestionsProvider _questionsProvider = null;
         private readonly List<Questions> _questions = null;
@@ -26,9 +27,9 @@ namespace ExamManageSystem.ViewModel
         public int SQNum { get; set; }
         public int CCNum { get; set; }
 
-        public NewPaperViewModel()
+        public NewPaperViewModel(EMSDBContext context)
         {
-            _questionsProvider = new QuestionsProvider();
+            _questionsProvider = new QuestionsProvider(context);
             _questions = new List<Questions>();
         }
 

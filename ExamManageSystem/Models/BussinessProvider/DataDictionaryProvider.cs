@@ -9,5 +9,8 @@ namespace Models.BussinessProvider
 {
     public class DataDictionaryProvider : Provider<DataDictionary>
     {
+        public DataDictionaryProvider(EMSDBContext dbContext) : base(dbContext)
+        {
+        }
     }
 }

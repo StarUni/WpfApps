@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using MahApps.Metro.IconPacks;
 
 namespace ExamManageSystem.UserControls.Components

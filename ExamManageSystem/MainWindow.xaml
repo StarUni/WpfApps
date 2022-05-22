@@ -8,7 +8,6 @@
                  xmlns:viewmodel="clr-namespace:ExamManageSystem.ViewModel"
                  xmlns:uc="clr-namespace:ExamManageSystem.UserControls.Components"
                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                 d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
                  DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
                  Title="{Binding Title}"
                  Width="1360"

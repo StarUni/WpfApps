@@ -1,12 +1,8 @@
 ﻿using ExamManageSystem.Models;
-using GalaSoft.MvvmLight;
-using Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExamManageSystem.DoMain.AppEngine
 {
@@ -14,74 +10,17 @@ namespace ExamManageSystem.DoMain.AppEngine
     {
         public static AppData Instance = new Lazy<AppData>(() => new AppData()).Value;
 
+        public IConfiguration Configuration { get; }
+
         public MainWindow MainWindow { get; set; }
 
-        public string SystemName => ConfigurationManager.AppSettings["SystemName"];
+        public string SystemName = "V2.1";//Configuration["SystemName"]
 
         public UserInfo UserInfo { get; set; } = new UserInfo();
+
+        //public AppData(IConfiguration configuration)
         //{
-        //    get
-        //    {
-        //        return UserInfo;
-        //    }
-        //    set
-        //    {
-        //        UserInfo = value;
-        //        RaisePropertyChanged("UserInfo");
-        //    }
+        //    Configuration = configuration;
         //}
-
-        public DataDictionary DataDictionary
-        {
-            get
-            {
-                return new DataDictionary();
-            }
-            set
-            {
-                DataDictionary = value;
-                RaisePropertyChanged("DataDictionary");
-            }
-        }        
-
-        public RoleInfo RoleInfo
-        {
-            get
-            {
-                return new RoleInfo();
-            }
-            set
-            {
-                RoleInfo = value;
-                RaisePropertyChanged("RoleInfo");
-            }
-        }
-
-        public Questions Questions
-        {
-            get
-            {
-                return new Questions();
-            }
-            set
-            {
-                Questions = value;
-                RaisePropertyChanged("Questions");
-            }
-        }
-
-        public WrongQuestions WrongQuestions
-        {
-            get
-            {
-                return new WrongQuestions();
-            }
-            set
-            {
-                WrongQuestions = value;
-                RaisePropertyChanged("WrongQuestions");
-            }
-        }
-
     }
 }

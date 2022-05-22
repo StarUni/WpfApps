@@ -1,30 +1,29 @@
 ﻿using ExamManageSystem.Models;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Win32;
+using Models;
 using Models.BussinessProvider;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace ExamManageSystem.ViewModel
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : ObservableObject
     {
         private readonly QuestionsProvider _questionsProvider = null;
         private readonly DataDictionaryProvider _dataDictionaryProvider = null;
 
-        public HomeViewModel()
+        public HomeViewModel(EMSDBContext context)
         {
-            _questionsProvider = new QuestionsProvider();
-            _dataDictionaryProvider = new DataDictionaryProvider();
+            _questionsProvider = new QuestionsProvider(context);
+            _dataDictionaryProvider = new DataDictionaryProvider(context);
         }
 
         public RelayCommand<UserControl> ChooseFileCmd => new RelayCommand<UserControl>(async (uc) => 
@@ -102,7 +101,7 @@ namespace ExamManageSystem.ViewModel
             
             await Task.Run(() => 
             {
-                qs.ForEach(x => x.CreateTime = DateTime.Now);
+                qs.ForEach(x => x.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 var num = _questionsProvider.InsertRange(qs);
                 MessageBox.Show($"已成功导入{num}道试题");
             });

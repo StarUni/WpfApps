@@ -1,29 +1,25 @@
 ﻿using ExamManageSystem.DoMain.AppEngine;
 using ExamManageSystem.DoMain.Helper;
 using ExamManageSystem.Models;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Models;
 using Models.BussinessProvider;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace ExamManageSystem.ViewModel
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ObservableObject
     {
         public UserInfo _userInfo { get; set; } = AppData.Instance.UserInfo;
         public string SystemName { get; set; } = AppData.Instance.SystemName;
         private UserInfoProvider _userInfoProvider = null;
 
-        public LoginViewModel()
+        public LoginViewModel(EMSDBContext context)
         {
-            _userInfoProvider = new UserInfoProvider();
+            _userInfoProvider = new UserInfoProvider(context);
             _userInfo.UserName = "admin";
         }
 
@@ -67,7 +63,13 @@ namespace ExamManageSystem.ViewModel
                         {
                             var salt = PasswordHelper.GenerateSalt(7);
                             var pwd = PasswordHelper.MD5Encoding(passwordBox.Password, salt);
-                            var i = _userInfoProvider.Insert(new UserInfo() { UserName = _userInfo.UserName, Password = pwd, Salt = salt});
+                            var i = _userInfoProvider.Insert(new UserInfo()
+                            {
+                                UserName = _userInfo.UserName,
+                                Password = pwd,
+                                Salt = salt,
+                                CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff")
+                            });
                             if(i < 0)
                             {
                                 MessageBox.Show($"insert failed.{i}");
