@@ -16,6 +16,7 @@ namespace ExamManageSystem.DoMain.AppEngine
         public MainWindow MainWindow { get; set; }
 
         public string SystemName { get; set; } 
+        public string ConnectionString { get; set; } 
 
         public UserInfo UserInfo { get; set; } = new UserInfo();
 
@@ -27,6 +28,7 @@ namespace ExamManageSystem.DoMain.AppEngine
                 .Add(new JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true })
                 .Build();
             SystemName = Configuration.GetValue<string>("SystemName");
+            ConnectionString = Configuration.GetSection("ConnectionStrings")["EMDBContext"];
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ExamManageSystem.Models;
+﻿using ExamManageSystem.DoMain.AppEngine;
+using ExamManageSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Models
@@ -17,7 +18,7 @@ namespace Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Filename=D:\Workspace\ExamManageSystem\Localdb\exam.db");
+            optionsBuilder.UseSqlite(AppData.Instance.ConnectionString);
         }
     }
 }

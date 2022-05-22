@@ -41,6 +41,8 @@ namespace ExamManageSystem.ViewModel
             if (FBNum > 0)
             {
                 var fbs = _questionsProvider.GetList(x => x.QuestionType.Equals("FB"));
+                if (FBNum > fbs.Count)
+                    FBNum = fbs.Count;
                 if (fbs.Count > 0)
                 {
                     for (int i = 0; i < FBNum; i++)
@@ -64,6 +66,8 @@ namespace ExamManageSystem.ViewModel
             if (MACNum > 0)
             {
                 var macs = _questionsProvider.GetList(x => x.QuestionType.Equals("MAC"));
+                if (MACNum > macs.Count)
+                    MACNum = macs.Count;
                 if (macs.Count > 0)
                 {
                     for (int i = 0; i < MACNum; i++)
@@ -87,6 +91,8 @@ namespace ExamManageSystem.ViewModel
             if (MCNum > 0)
             {
                 var mcs = _questionsProvider.GetList(x => x.QuestionType.Equals("MC"));
+                if (MCNum > mcs.Count)
+                    MCNum = mcs.Count;
                 if (mcs.Count > 0)
                 {
                     for (int i = 0; i < MCNum; i++)
@@ -110,6 +116,8 @@ namespace ExamManageSystem.ViewModel
             if (TFNum > 0)
             {
                 var tfs = _questionsProvider.GetList(x => x.QuestionType.Equals("TF"));
+                if (TFNum > tfs.Count)
+                    TFNum = tfs.Count;
                 if (tfs.Count > 0)
                 {
                     for (int i = 0; i < TFNum; i++)
@@ -134,6 +142,8 @@ namespace ExamManageSystem.ViewModel
             if (SQNum > 0)
             {
                 var sqs = _questionsProvider.GetList(x => x.QuestionType.Equals("SQ"));
+                if (SQNum > sqs.Count)
+                    SQNum = sqs.Count;
                 if (sqs.Count > 0)
                 {
                     for (int i = 0; i < SQNum; i++)
